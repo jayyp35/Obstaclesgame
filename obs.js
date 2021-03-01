@@ -118,15 +118,19 @@ function updatePlayer(e) {
 }
     
 function drawenemy() {
-    pen.fillStyle = "red"
-    pen.fillRect(enemy1.left,enemy1.top,es,es)
-    pen.fillRect(enemy2.left,enemy2.top,es,es)
-    pen.fillRect(enemy3.left,enemy3.top,es,es)
+    enemy = new Image();
+    enemy.src = "./resources/enemysmall2.png"
+    pen.drawImage(enemy,enemy1.left,enemy1.top)
+    pen.drawImage(enemy,enemy2.left,enemy2.top)
+    pen.drawImage(enemy,enemy3.left,enemy3.top)
+    
 }
 
 function drawplayer() {
-    pen.fillStyle = "yellow"
-    pen.fillRect(player.left,player.top,es,es)
+    p = new Image();
+    p.src = "./resources/playersmall.png"
+    
+    pen.drawImage(p,player.left,player.top)
 
 }
 
