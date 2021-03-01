@@ -34,19 +34,88 @@ function init () {
     },
 
     player = {
-        direction: "right"
+        top: cs*10,
+        bottom: cs * 13,
+        left: cs,
+        right : cs*4,
     }
+
+    document.addEventListener("keydown",updatePlayer)
 }
 
-
 function draw() {
-    pen.clearRect(cs*10,0,600,1000)
+    pen.clearRect(0,0,800,600)
     drawenemy()
     drawplayer()
 
 }
-    
-    
+function update() {
+    updateEnemies()
+    updatePlayer()
+}
+
+function updateEnemies () {
+    if(enemy1.direction == "downwards" && enemy1.bottom > 600)
+        enemy1.direction = "upwards"
+    else if(enemy1.direction == "upwards" && enemy1.top < 0)
+        enemy1.direction = "downwards"
+
+    if(enemy1.direction == "upwards") {
+        enemy1.top -= 15;
+        enemy1.bottom -= 15;
+    } else {
+        enemy1.top += 15;
+        enemy1.bottom += 15;
+    }
+
+
+    if(enemy2.direction == "downwards" && enemy2.bottom > 600)
+        enemy2.direction = "upwards"
+    else if(enemy2.direction == "upwards" && enemy2.top < 0)
+        enemy2.direction = "downwards"
+
+    if(enemy2.direction == "upwards") {
+        enemy2.top -= 30;
+        enemy2.bottom -= 30;
+    } else {
+        enemy2.top += 30;
+        enemy2.bottom += 30;
+    }
+
+
+    if(enemy3.direction == "downwards" && enemy3.bottom > 600)
+        enemy3.direction = "upwards"
+    else if(enemy3.direction == "upwards" && enemy3.top < 0)
+        enemy3.direction = "downwards"
+
+    if(enemy3.direction == "upwards") {
+        enemy3.top -= 20;
+        enemy3.bottom -= 20;
+    } else {
+        enemy3.top += 20;
+        enemy3.bottom += 20;
+    }
+} 
+
+function updatePlayer(e) {
+    if(e.keyCode == 37) {
+        player.left -= 30
+        player.right -= 30
+    }
+    else if(e.keyCode == 38) {
+        player.top -= 30
+        player.bottom -= 30
+    }
+    else if(e.keyCode == 39) {
+        player.left += 30
+        player.right += 30
+    }          
+    else if(e.keyCode == 40) {
+        player.top += 30
+        player.bottom += 30
+    }
+       
+}
     
 function drawenemy() {
     pen.fillStyle = "red"
@@ -57,56 +126,21 @@ function drawenemy() {
 
 function drawplayer() {
     pen.fillStyle = "yellow"
-    pen.fillRect(cs,cs*10,es,es)
+    pen.fillRect(player.left,player.top,es,es)
 }
 
-function update() {
-    if(enemy1.direction == "downwards" && enemy1.bottom > 600)
-        enemy1.direction = "upwards"
-    else if(enemy1.direction == "upwards" && enemy1.top < 0)
-        enemy1.direction = "downwards"
+// function checkcollide () {
+//     if(player.top <= enemy1.bottom && player.top >=enemy1.top && player.left >= enemy1.left && player.right)
+// }
 
-    if(enemy1.direction == "upwards") {
-        enemy1.top -= 2;
-        enemy1.bottom -= 2;
-    } else {
-        enemy1.top += 2;
-        enemy1.bottom += 2;
-    }
-
-
-    if(enemy2.direction == "downwards" && enemy2.bottom > 600)
-        enemy2.direction = "upwards"
-    else if(enemy1.direction == "upwards" && enemy2.top < 0)
-        enemy2.direction = "downwards"
-
-    if(enemy2.direction == "upwards") {
-        enemy2.top -= 2;
-        enemy2.bottom -= 2;
-    } else {
-        enemy2.top += 2;
-        enemy2.bottom += 2;
-    }
-
-
-    if(enemy3.direction == "downwards" && enemy3.bottom > 600)
-        enemy3.direction = "upwards"
-    else if(enemy3.direction == "upwards" && enemy3.top < 0)
-        enemy3.direction = "downwards"
-
-    if(enemy3.direction == "upwards") {
-        enemy3.top -= 2;
-        enemy3.bottom -= 2;
-    } else {
-        enemy3.top += 2;
-        enemy3.bottom += 2;
-    }
-} 
 
 function gameloop () {
+    // checkcollide()
     draw()
     update()
 }
 
+
 init()
-var f = setInterval(gameloop, 1);
+
+var f = setInterval(gameloop, 40);
