@@ -143,7 +143,7 @@ function checkcollide () {
     checkcollide3()
     else if(player.left > 800) {
         clearInterval(f)
-        console.log("Win");
+        console.log("victory");
     }
 }
 
