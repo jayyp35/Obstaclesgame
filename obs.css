@@ -1,4 +1,6 @@
 #mycanvas {
-    background-color: black;
+    background-image: url("./resources/bg2.jpg");
+    background-size: cover;
     border : 10px solid grey;
+    box-sizing: border-box;
 }
