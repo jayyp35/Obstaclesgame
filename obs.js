@@ -44,7 +44,7 @@ function init () {
 }
 
 function draw() {
-    pen.clearRect(0,0,800,600)
+    pen.clearRect(0,0,1000,600)
     drawenemy()
     drawplayer()
 
@@ -127,6 +127,7 @@ function drawenemy() {
 function drawplayer() {
     pen.fillStyle = "yellow"
     pen.fillRect(player.left,player.top,es,es)
+
 }
 
 function checkcollide () {
@@ -136,7 +137,12 @@ function checkcollide () {
     checkcollide2()
     else if(player.right > enemy3.left && player.left < enemy3.right)
     checkcollide3()
+    else if(player.left > 800) {
+        clearInterval(f)
+        console.log("Win");
+    }
 }
+
 function checkcollide1() {
     if((player.top > enemy1.top && player.top < enemy1.bottom) || (player.bottom > enemy1.top && player.top < enemy1.bottom)) {
     clearInterval(f)
@@ -144,6 +150,7 @@ function checkcollide1() {
     }
     
 }
+
 function checkcollide2() {
     if((player.top > enemy2.top && player.top < enemy2.bottom) || (player.bottom > enemy2.top && player.top < enemy2.bottom)) {
         clearInterval(f)
