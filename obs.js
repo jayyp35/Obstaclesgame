@@ -129,13 +129,39 @@ function drawplayer() {
     pen.fillRect(player.left,player.top,es,es)
 }
 
-// function checkcollide () {
-//     if(player.top <= enemy1.bottom && player.top >=enemy1.top && player.left >= enemy1.left && player.right)
-// }
+function checkcollide () {
+    if(player.right > enemy1.left && player.left < enemy1.right)
+    checkcollide1()
+    else if(player.right > enemy2.left && player.left < enemy2.right)
+    checkcollide2()
+    else if(player.right > enemy3.left && player.left < enemy3.right)
+    checkcollide3()
+}
+function checkcollide1() {
+    if((player.top > enemy1.top && player.top < enemy1.bottom) || (player.bottom > enemy1.top && player.top < enemy1.bottom)) {
+    clearInterval(f)
+    console.log("Dead by 1");
+    }
+    
+}
+function checkcollide2() {
+    if((player.top > enemy2.top && player.top < enemy2.bottom) || (player.bottom > enemy2.top && player.top < enemy2.bottom)) {
+        clearInterval(f)
+        console.log("Dead by 2");
+        }
+}
+
+function checkcollide3() {
+    if((player.top > enemy3.top && player.top < enemy3.bottom) || (player.bottom > enemy3.top && player.top < enemy3.bottom)) {
+        clearInterval(f)
+        console.log("Dead by 3");
+        }
+}
+
 
 
 function gameloop () {
-    // checkcollide()
+    checkcollide()
     draw()
     update()
 }
